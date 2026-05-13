@@ -1,34 +1,37 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { useAuth } from "../context/AuthContext";
 import colors from "../themes/colors";
+import { FontAwesome } from "@expo/vector-icons";
 
 export default function UserInfo() {
+  const { user, logout } = useAuth();
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Mi listita de jueguitos fav uwu</Text>
-      <Text style={styles.subtitle}>Gestor de Recuento de Videojuegos</Text>
+      <View>
+        <Text style={styles.title}>EPA {user}</Text>
+        <Text style={styles.subtitle}>Gestioname esta:</Text>
+      </View>
+      
+      <TouchableOpacity onPress={logout} style={styles.logoutBtn}>
+        <FontAwesome name="sign-out" size={20} color={colors.deleteButton} />
+      </TouchableOpacity>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: colors.cardBackground,
-    padding: 20,
-    borderRadius: 12,
-    marginBottom: 15,
+  container: { 
+    flexDirection: "row", 
+    justifyContent: "space-between", 
     alignItems: "center",
-    borderWidth: 1,
-    borderColor: colors.accent,
+    backgroundColor: colors.cardBackground, 
+    padding: 20, 
+    borderRadius: 12, 
+    marginBottom: 15 
   },
-  title: {
-    color: colors.accent,
-    fontSize: 24,
-    fontWeight: "bold",
-  },
-  subtitle: {
-    color: colors.secondaryFont,
-    fontSize: 14,
-    marginTop: 4,
-  },
+  title: { color: colors.accent, fontSize: 18, fontWeight: "bold" },
+  subtitle: { color: colors.secondaryFont, fontSize: 12 },
+  logoutBtn: { padding: 10 }
 });
