@@ -49,8 +49,13 @@ export default function GameCard({ game }: { game: Game }) {
           />
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => deleteGame(game.id)} style={styles.iconButton}>
-          <FontAwesome name="trash" size={24} color={colors.deleteButton} />
+        //Error 1 
+
+        <TouchableOpacity onPress={() => {
+          removeFromCart(game.id);
+          deleteGame(game.id);
+        }} style={styles.iconButton}>
+        <FontAwesome name="trash" size={24} color={colors.deleteButton} />
         </TouchableOpacity>
       </View>
     </View>

@@ -11,7 +11,7 @@ import { FontAwesome } from "@expo/vector-icons";
 
 export default function MainScreen() {
   const { games, clearAllGames } = useGames();
-  const { getMarkedCount, getTotalPrice } = useCart();
+  const { getMarkedCount, getTotalPrice, clearCart } = useCart();
   const [familySelected, setFamilySelected] = useState("");
   const [isModalVisible, setModalVisible] = useState(false);
 
@@ -58,7 +58,15 @@ export default function MainScreen() {
       <View style={styles.fabContainer}>
         <TouchableOpacity 
           style={[styles.fab, styles.deleteFab, games.length === 0 && styles.disabledFab]} 
-          onPress={clearAllGames}
+
+          //Error 2
+
+          onPress={() => {
+          clearCart();
+          clearAllGames();
+          }}
+
+
           disabled={games.length === 0}
         >
           <FontAwesome name="trash" size={24} color="#fff" />

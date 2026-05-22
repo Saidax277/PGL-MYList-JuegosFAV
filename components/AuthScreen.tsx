@@ -15,13 +15,20 @@ export default function AuthScreen() {
       Alert.alert("Error", "Por favor, rellena todos los campos.");
       return;
     }
-    // Aqui iría la lógica real, pero como es una práctica y ademas nuestro maravilloso tutor el señor Herrera nos dijo lo del login dos dias antes de la entrega oficial, pueda daremos por hecho de que está positivamente bien.
-    login(email.split("@")[0]); 
-  };
+
+    //Error 3 
+
+     if (!email.includes("@gmail.com")) {
+    Alert.alert("Error", "El correo necesita una @gmail.com.");
+    return;
+  }
+
+  login(email.split("@")[0]); 
+};
 
   return (
     <View style={styles.container}>
-      <Text style={styles.logo}>🎮 MyGameList</Text>
+      <Text style={styles.logo}>MyGameList</Text>
       <Text style={styles.title}>{isLogin ? "Iniciar Sesión" : "Crear Cuenta"}</Text>
 
       <TextInput 
