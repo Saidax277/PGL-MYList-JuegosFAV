@@ -11,25 +11,17 @@ export default function AuthScreen() {
   const { login } = useAuth();
 
   const handleAuth = () => {
-
     if (!email.trim() || !password.trim()) {
       Alert.alert("Error", "Por favor, rellena todos los campos.");
       return;
     }
-
-    // El error está aquí PT 3
-
-    if (!email.includes("@")) {
-      Alert.alert("Desde cuando has visto un correo sin ¿@?")
-      return;
-    }
-
-    login(email);
+    // Aqui iría la lógica real, pero como es una práctica y ademas nuestro maravilloso tutor el señor Herrera nos dijo lo del login dos dias antes de la entrega oficial, pueda daremos por hecho de que está positivamente bien.
+    login(email.split("@")[0]); 
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.logo}>MyGameList</Text>
+      <Text style={styles.logo}>🎮 MyGameList</Text>
       <Text style={styles.title}>{isLogin ? "Iniciar Sesión" : "Crear Cuenta"}</Text>
 
       <TextInput 

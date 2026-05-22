@@ -11,8 +11,7 @@ import { FontAwesome } from "@expo/vector-icons";
 
 export default function MainScreen() {
   const { games, clearAllGames } = useGames();
-  // Hay que añadir clearCart para que cuando borres todos los juegos y si hay alguno seleccionado, no pase como antes y salga seleccionado cunado no lo están uwu
-  const { getMarkedCount, getTotalPrice, clearCart } = useCart();
+  const { getMarkedCount, getTotalPrice } = useCart();
   const [familySelected, setFamilySelected] = useState("");
   const [isModalVisible, setModalVisible] = useState(false);
 
@@ -59,12 +58,7 @@ export default function MainScreen() {
       <View style={styles.fabContainer}>
         <TouchableOpacity 
           style={[styles.fab, styles.deleteFab, games.length === 0 && styles.disabledFab]} 
-          // El error está aqui PT 2
-          onPress={() => { 
-            clearAllGames(); 
-            clearCart();
-          }}
-
+          onPress={clearAllGames}
           disabled={games.length === 0}
         >
           <FontAwesome name="trash" size={24} color="#fff" />
