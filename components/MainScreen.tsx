@@ -16,8 +16,8 @@ export default function MainScreen() {
   const [isModalVisible, setModalVisible] = useState(false);
 
   // Filtrado de la lista
-  const filteredGames = familySelected 
-    ? games.filter(g => g.category === familySelected) 
+  const filteredGames = familySelected
+    ? games.filter(g => g.category === familySelected)
     : games;
 
   return (
@@ -39,7 +39,7 @@ export default function MainScreen() {
       </View>
 
       <Families familySelected={familySelected} filterByFamily={setFamilySelected} />
-    {/* Si no hay juegos, mostramos un mensaje.*/}
+      {/* Si no hay juegos, mostramos un mensaje.*/}
       {games.length === 0 ? (
         <View style={styles.emptyContainer}>
           <FontAwesome name="folder-open-o" size={50} color={colors.secondaryFont} />
@@ -56,14 +56,13 @@ export default function MainScreen() {
 
       {/* Botones de Acción Flotantes */}
       <View style={styles.fabContainer}>
-        <TouchableOpacity 
-          style={[styles.fab, styles.deleteFab, games.length === 0 && styles.disabledFab]} 
+        <TouchableOpacity
+          style={[styles.fab, styles.deleteFab, games.length === 0 && styles.disabledFab]}
 
           //Error 2
-
           onPress={() => {
-          clearCart();
-          clearAllGames();
+            clearCart();
+            clearAllGames();
           }}
 
 

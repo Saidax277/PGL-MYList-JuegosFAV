@@ -49,8 +49,6 @@ export default function GameCard({ game }: { game: Game }) {
           />
         </TouchableOpacity>
 
-        //Error 1 
-
         <TouchableOpacity onPress={() => {
           removeFromCart(game.id);
           deleteGame(game.id);

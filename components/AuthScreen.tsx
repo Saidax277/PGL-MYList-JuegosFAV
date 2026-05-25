@@ -1,14 +1,15 @@
-// components/AuthScreen.tsx
 import React, { useState } from "react";
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Alert } from "react-native";
 import { useAuth } from "../context/AuthContext";
 import colors from "../themes/colors";
+import { useRouter } from "expo-router";
 
 export default function AuthScreen() {
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { login } = useAuth();
+  const router = useRouter();
 
   const handleAuth = () => {
     if (!email.trim() || !password.trim()) {
@@ -16,31 +17,30 @@ export default function AuthScreen() {
       return;
     }
 
-    //Error 3 
+    if (!email.includes("@gmail.com")) {
+      Alert.alert("Error", "El correo necesita una @gmail.com.");
+      return;
+    }
 
-     if (!email.includes("@gmail.com")) {
-    Alert.alert("Error", "El correo necesita una @gmail.com.");
-    return;
-  }
-
-  login(email.split("@")[0]); 
-};
+    login(email.split("@")[0]);
+    router.replace("/(tabs)/lista");
+  };
 
   return (
     <View style={styles.container}>
       <Text style={styles.logo}>MyGameList</Text>
       <Text style={styles.title}>{isLogin ? "Iniciar Sesión" : "Crear Cuenta"}</Text>
 
-      <TextInput 
-        style={styles.input} 
-        placeholder="Correo electrónico, pls" 
+      <TextInput
+        style={styles.input}
+        placeholder="Correo electrónico, pls"
         placeholderTextColor="#666"
         value={email}
         onChangeText={setEmail}
       />
-      <TextInput 
-        style={styles.input} 
-        placeholder="Contraseña, si no quieres no claro" 
+      <TextInput
+        style={styles.input}
+        placeholder="Contraseña, si no quieres no claro"
         placeholderTextColor="#666"
         secureTextEntry
         value={password}
