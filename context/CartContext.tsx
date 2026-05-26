@@ -13,7 +13,7 @@ type CartContextType = {
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export const CartProvider = ({ children }: { children: React.ReactNode }) => {
-  const [cart, setCart] = useState<CartGame[]>([]);
+  const [cart, setCart] = useState<CartGame[]>([]);  
 
   // Marcar un juego
 
@@ -38,7 +38,7 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
 
   // Cálculo del precio total de lo marcado 
   const getTotalPrice = () => {
-    return cart.reduce((acc, item) => acc + (item.price * (item.count || 1)), 0);
+    return cart.reduce((acc, item) => acc + item.price, 0);
   };
 
   // Conteo de elementos marcados 
